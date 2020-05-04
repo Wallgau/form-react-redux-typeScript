@@ -12,12 +12,10 @@ const step = (
   switch (action.type) {
     case StepActionType.INCREMENT:
       return {
-        ...state,
         step: state.step + 1,
       };
     case StepActionType.DECREMENT:
       return {
-        ...state,
         step: state.step - 1,
       };
     default:
