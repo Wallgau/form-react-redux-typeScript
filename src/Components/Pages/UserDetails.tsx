@@ -1,14 +1,10 @@
 import React from "react";
 import NextButton from "./Buttons/NextButton";
 
-interface Props {
-  nextStep: () => void;
-}
-
-const UserDetailsComponent = ({ nextStep }: Props) => {
+const UserDetailsComponent = () => {
   return (
     <>
-      <NextButton nextStep={nextStep} />
+      <NextButton />
     </>
   );
 };

@@ -1,24 +1,62 @@
-import React, { useState } from "react";
+import React from "react";
+
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
+import { incrementStep, decrementStep } from "../store/Steps/action";
+import { StepState } from "../store/Steps/types";
+
+import Header from "./Header";
 import UserDetails from "./Pages/UserDetails";
 import Privacy from "./Pages/Privacy";
 import CompleteForm from "./Pages/CompleteForm";
 
-const Stepper = () => {
-  const [step, setStep] = useState(0);
+interface StepProps {
+  readonly increment: () => void;
+  readonly decrement: () => void;
+  readonly step: number;
+}
+
+const Stepper: React.SFC<StepProps> = ({ step, increment, decrement }) => {
   console.log(step);
-  const prevStep = () => {
-    return setStep(step - 1);
-  };
-  const nextStep = () => {
-    return setStep(step + 1);
-  };
-  switch (step) {
-    case 0:
-      return <UserDetails nextStep={nextStep} />;
-    case 1:
-      return <Privacy nextStep={nextStep} prevStep={prevStep} />;
-    case 2:
-      return <CompleteForm prevStep={prevStep} />;
-  }
+  return <>hello</>;
+  //let content;
+  //   switch (step) {
+  //     case 0:
+  //       content = (
+  //         <>
+  //           <Header />
+  //           <UserDetails />
+  //         </>
+  //       );
+  //       break;
+  //     case 1:
+  //       content = (
+  //         <>
+  //           <Header />
+  //           <Privacy />
+  //         </>
+  //       );
+  //       break;
+  //     case 2:
+  //       content = (
+  //         <>
+  //           <Header />
+  //           <CompleteForm />
+  //         </>
+  //       );
+  //       break;
+  //     default:
+  //       return content;
+  //   }
+  //   return content;
 };
-export default Stepper;
+
+const mapStateToProps = (state: StepState) => {
+  return { step: state.step };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  increment: () => dispatch(incrementStep()),
+  decrement: () => dispatch(decrementStep()),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Stepper);

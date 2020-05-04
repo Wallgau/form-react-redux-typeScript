@@ -1,15 +1,28 @@
 import React from "react";
 
-interface Props {
-  prevStep: () => void;
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
+import { decrementStep } from "../../../store/Steps/action";
+import { StepState } from "../../../store/Steps/types";
+
+interface StepProps {
+  readonly decrement: () => void;
+  readonly step: number;
 }
 
-const BackButton: React.FC<Props> = ({ prevStep }) => {
+const BackButton = ({ decrement, step }: StepProps) => {
   return (
     <>
-      <button onClick={() => prevStep()}>Back</button>
+      <button onClick={() => decrement()}>Back</button>
     </>
   );
 };
 
-export default BackButton;
+const mapStateToProps = (state: StepState) => ({
+  step: state.step,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  decrement: () => dispatch(decrementStep()),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(BackButton);
