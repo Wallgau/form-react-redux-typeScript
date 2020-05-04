@@ -3,7 +3,7 @@ import React from "react";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {incrementStep, decrementStep} from "../store/Steps/action";
-import {StepState} from "../store/Steps/types";
+
 
 import Header from "./Header";
 import UserDetails from "./Pages/UserDetails";
@@ -16,7 +16,7 @@ interface StepProps {
     readonly step: number;
 }
 
-const Stepper = ({step} : StepState) => {
+const Stepper = ({step} : StepProps) => {
 
     let content: any;
     switch (step) {
