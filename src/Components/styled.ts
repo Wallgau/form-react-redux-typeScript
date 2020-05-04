@@ -1,27 +1,12 @@
 import styled from "styled-components";
+import { Box as _Box } from "@material-ui/core";
 
 interface Props {
-    step: number
+  isActive: boolean;
 }
 
-export const Top = styled.div<Props> `
-display:flex;
-justify-content:space-around;
-p.etapeOne{
-  background-color: ${
-    (props) => props.step === 0 ? 'yellow' : 'white'
-};
-}
-p.etapeTwo{
-  background-color: ${
-    (props) => props.step === 1 ? 'yellow' : 'white'
-};
-}
-p.etapeThree{
-  background-color: ${
-    (props) => props.step === 2 ? 'yellow' : 'white'
-};
-}
-  
+export const Box = styled(_Box)<Props>`
+  display: flex;
+  justify-content: space-around;
+  background-color: ${(props) => (props.isActive ? "red" : "white")};
 `;
-console.log('step',)

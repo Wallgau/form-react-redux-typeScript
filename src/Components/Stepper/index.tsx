@@ -2,13 +2,13 @@ import React from "react";
 
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
-import {incrementStep, decrementStep} from "../store/Steps/action";
+import {incrementStep, decrementStep} from "../../store/Steps/action";
 
 
-import Header from "./Header";
-import UserDetails from "./Pages/UserDetails";
-import Privacy from "./Pages/Privacy";
-import CompleteForm from "./Pages/CompleteForm";
+import Header from "../Header";
+import UserDetails from "../Pages/UserDetails";
+import Privacy from "../Pages/Privacy";
+import CompleteForm from "../Pages/CompleteForm";
 
 interface StepProps {
     readonly increment: () => void;

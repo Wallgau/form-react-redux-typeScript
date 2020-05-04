@@ -1,12 +1,10 @@
 import React from "react";
-import NextButton from "./Buttons/NextButton";
+import NextButton from "../Buttons/NextButton/index";
 
 const UserDetailsComponent = () => {
-  return (
-    <>
-      <NextButton />
-    </>
-  );
+    return (<>
+        <NextButton/>
+    </>);
 };
 
 export default UserDetailsComponent;
