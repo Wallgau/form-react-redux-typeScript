@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { connect } from "react-redux";
 
-import { Box } from "../styled";
+import { Top, Box } from "./styled";
 
 interface StepProps {
   readonly step: number;
@@ -10,28 +10,28 @@ interface StepProps {
 const Header = ({ step }: StepProps) => {
   const boxs = [
     {
-      page: "Page1",
+      page: "Profile",
       id: "page1",
     },
     {
-      page: "Page2",
+      page: "Privacy",
       id: "page2",
     },
     {
-      page: "Page3",
+      page: "Complete",
       id: "page3",
     },
   ];
 
   console.log();
   const content = (
-    <>
+    <Top>
       {boxs.map((box) => (
         <Box key={box.id} isActive={step === boxs.indexOf(box)}>
           {box.page}
         </Box>
       ))}
-    </>
+    </Top>
   );
   return content;
 };
