@@ -16,33 +16,31 @@ interface StepProps {
 }
 
 const Stepper = ({ step }: StepProps) => {
-  let content: any;
   switch (step) {
     case 0:
-      return (content = (
+      return (
         <>
           <Header />
           <UserDetails />
         </>
-      ));
+      );
     case 1:
-      return (content = (
+      return (
         <>
           <Header />
           <Privacy />
         </>
-      ));
+      );
     case 2:
-      return (content = (
+      return (
         <>
           <Header />
           <CompleteForm />
         </>
-      ));
+      );
     default:
-      return content;
+      return <>LOADING</>;
   }
-  return content;
 };
 
 const mapStateToProps = (state: any) => ({ step: state.step.step });
