@@ -21,7 +21,6 @@ export const Top = styled.div`
   justify-content: space-around;
   width: 80%;
   margin: 2rem auto;
-  border: 1px solid #0dbf73;
+  border: 1px solid transparent;
   border-radius: 0.5rem;
-  box-shadow: 0.1rem 0.1rem;
 `;

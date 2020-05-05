@@ -1,16 +1,37 @@
 import React from "react";
-import { Body } from "./styled";
+import { TextField, Body } from "./styled";
 import NextButton from "../../Buttons/NextButton/index";
 
 const UserDetailsComponent = () => {
   return (
     <Body>
       <form>
-        <input></input>
-        <input></input>
-        <input></input>
+        <br />
+        <div>
+          <TextField
+            label="Name"
+            id="outlined-basic"
+            variant="outlined"
+            required
+          />
+        </div>
+        <br />
+        <div>
+          <TextField id="outlined-basic" label="Role" variant="outlined" />
+        </div>
+        <br />
+        <div>
+          <TextField label="email" id="outlined-basic" variant="outlined" />
+        </div>
+        <br />
+        <div>
+          <TextField label="password" id="outlined-basic" variant="outlined" />
+          <br />
+        </div>
+
+        <br />
+        <NextButton />
       </form>
-      <NextButton />
     </Body>
   );
 };
