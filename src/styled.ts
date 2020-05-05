@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import { Card as _Card, TextField as _TextField } from "@material-ui/core";
+import { Card as _Card } from "@material-ui/core";
 
 export const Card = styled(_Card)`
-  width: 60%;
-  padding: 1rem 0;
-  margin: 2rem auto;
+  @media (min-width: 600px) {
+    width: 60%;
+    margin: 2rem auto;
+  }
+  padding-bottom: 2rem;
 `;

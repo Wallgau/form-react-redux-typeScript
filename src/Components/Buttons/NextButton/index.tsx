@@ -1,4 +1,6 @@
 import React from "react";
+import {Button, Next} from '../styled';
+
 
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
@@ -11,9 +13,15 @@ interface StepProps {
 }
 
 const NextButton = ({increment, step} : StepProps) => {
-    return (<button onClick={
-        () => increment()
-    }>Next</button>);
+    return (<Next>
+        <Button variant="contained" className="next"
+            onClick={
+                () => increment()
+        }>
+            Next
+        </Button>
+    </Next>);;
+
 };
 
 const mapStateToProps = (state : StepState) => ({step: state.step});
