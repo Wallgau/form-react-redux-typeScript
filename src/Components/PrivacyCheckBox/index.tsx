@@ -4,15 +4,18 @@ import { RdxFormControlCheckbox, ReduxFormProps } from "../ReduxForm/index";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { userDetails } from "../../store/UserDetails/action";
+import { privacyOne, privacyTwo } from "../../store/Privacy/action";
 
-interface IFormProps {
-  index: number;
+interface PrivacyProps {
+  privacyOne: boolean;
+  privacyTwo: boolean;
 }
-interface DataProps {
-  userData: (payload: IFormProps) => void;
+interface PrivacyCheckedProps {
+  privacyOneChecked: () => void;
+  privacyTwoChecked: () => void;
 }
 
-const PrivacyCheckBox = () => {
+const PrivacyCheckBox = ({ privacyOneChecked, privacyTwoChecked }: PrivacyCheckedProps) => {
   const [isCheckedA, setCheckedA] = useState(false);
   const [isCheckedB, setCheckedB] = useState(false);
 
@@ -24,7 +27,10 @@ const PrivacyCheckBox = () => {
         type='checkbox'
         label='Receive updates about Tray.io product by email'
         checked={isCheckedA}
-        onChange={() => setCheckedA(!isCheckedA)}
+        onChange={() => {
+          setCheckedA(!isCheckedA);
+          privacyOneChecked();
+        }}
       />
       <Field
         name='role'
@@ -32,16 +38,23 @@ const PrivacyCheckBox = () => {
         type='text'
         label='Receive communication by email for other products created by the Tray.io team'
         checked={isCheckedB}
-        onChange={() => setCheckedB(!isCheckedB)}
+        onChange={() => {
+          setCheckedB(!isCheckedB);
+          privacyTwoChecked();
+        }}
       />
     </form>
   );
 };
 
-const mapStateToProps = (state: any) => ({});
+const mapStateToProps = (state: PrivacyProps) => ({
+  privacyOne: state.privacyOne,
+  privacyTwo: state.privacyTwo,
+});
 
 const mapDispatchProps = (dispatch: Dispatch) => ({
-  userData: () => dispatch(userDetails()),
+  privacyOneChecked: () => dispatch(privacyOne()),
+  privacyTwoChecked: () => dispatch(privacyTwo()),
 });
 
 const connectForm = connect(mapStateToProps, mapDispatchProps)(PrivacyCheckBox);

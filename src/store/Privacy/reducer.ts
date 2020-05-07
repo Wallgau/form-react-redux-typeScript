@@ -1,5 +1,6 @@
 import { PrivacyActionType, PrivacyState, PrivacyActions } from "./types";
 import { Action } from "redux";
+import { privacyOne } from "./action";
 
 export const initialState: PrivacyState = {
   privacyOne: false,
@@ -11,12 +12,12 @@ const privacyChecked = (state: PrivacyState = initialState, action: Action | Pri
     case PrivacyActionType.PRIVACYONE:
       return {
         ...state,
-        privacyOne: true,
+        privacyOne: !state.privacyOne,
       };
     case PrivacyActionType.PRIVACYTWO:
       return {
         ...state,
-        privacyTwo: true,
+        privacyTwo: !state.privacyTwo,
       };
     default:
       return state;
