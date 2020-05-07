@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Box as _Box } from "@material-ui/core";
 
 export const Paragraph = styled.div`
   p {
