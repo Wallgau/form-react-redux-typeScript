@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Back } from "../styled";
+import { Button } from "../styled";
 
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
@@ -13,11 +13,9 @@ interface StepProps {
 
 const BackButton = ({ decrement, step }: StepProps) => {
   return (
-    <Back>
-      <Button variant="contained" className="back" onClick={() => decrement()}>
-        Back
-      </Button>
-    </Back>
+    <Button variant='contained' className='back' onClick={() => decrement()}>
+      Back
+    </Button>
   );
 };
 

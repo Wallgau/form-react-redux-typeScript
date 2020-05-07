@@ -11,6 +11,10 @@ export const Body = styled.div`
   form div {
     width: 100%;
   }
+  .back {
+    position: absolute;
+    right: 7rem;
+  }
 `;
 
 export const TextField = styled(_TextField)`
