@@ -14,3 +14,4 @@ export enum userDetailsActionType {
 export interface userDetailsAction extends Action {
   type: userDetailsActionType.USERDETAILS;
 }
+export type userActions = userDetailsAction;

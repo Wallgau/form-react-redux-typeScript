@@ -1,5 +1,4 @@
-import { userDetailsActionType, userDetailsAction } from "./types";
+import {userDetailsActionType, userDetailsAction} from "./types";
 
-export const userDetails = (): userDetailsAction => ({
-  type: userDetailsActionType.USERDETAILS,
-});
+
+export const userDetails = () : userDetailsAction => ({type: userDetailsActionType.USERDETAILS});

@@ -5,25 +5,51 @@ import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { incrementStep } from "../../../store/Stepper/action";
 import { StepState } from "../../../store/Stepper/types";
+import { formState } from "../../../store/UserDetails/types";
+import actions from "redux-form/lib/actions";
+import { userDetails } from "../../../store/UserDetails";
 
-interface StepProps {
+interface ButtonProps {
   readonly increment: () => void;
-  readonly step: number;
 }
 
-const NextButton = ({ increment, step }: StepProps) => {
+interface IFormProps {
+  name: string;
+  role: string;
+  email: string;
+  password: string;
+}
+interface DataProps {
+  userData: (payload: IFormProps) => void;
+}
+
+const NextButton = ({ increment, userData }: ButtonProps & DataProps & IFormProps) => {
   return (
     <Next>
-      <Button variant="contained" className="next" onClick={() => increment()}>
+      <Button
+        type='submit'
+        variant='contained'
+        className='next'
+        onClick={(payload: any) => {
+          increment();
+          userData(payload);
+        }}>
         Next
       </Button>
     </Next>
   );
 };
 
-const mapStateToProps = (state: StepState) => ({ step: state.step });
+const mapStateToProps = (state: StepState & formState) => ({
+  step: state.step,
+  name: state.name,
+  role: state.role,
+  email: state.email,
+  password: state.password,
+});
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   increment: () => dispatch(incrementStep()),
+  userData: () => dispatch(userDetails()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(NextButton);

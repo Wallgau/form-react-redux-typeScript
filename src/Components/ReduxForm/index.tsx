@@ -37,22 +37,18 @@ export const RdxFormControlInput = ({
   type,
 }: ReduxFormProps) => {
   const content = (
-    <FormControl
-      margin="normal"
-      required={required}
-      error={meta.touched && !!meta.error}
-    >
+    <FormControl margin='normal' required={required} error={meta.touched && !!meta.error}>
       <InputLabel htmlFor={name}>{label}</InputLabel>
       {/**
        * Required has been set to false to ensure it doesn't trigger
        * browser's native required field validation
        */}
-      <Input id={name} name={name} type={type} required={false} />
+      <Input id={name} name={name} type={type} required={false} onChange={input.onChange} />
       {meta.touched && !!meta.error ? (
-        <FormHelperText id="component-error-text">{meta.error}</FormHelperText>
+        <FormHelperText id='component-error-text'>{meta.error}</FormHelperText>
       ) : null}
       {description && (
-        <FormHelperText id="component-description" error={false}>
+        <FormHelperText id='component-description' error={false}>
           {description}
         </FormHelperText>
       )}
@@ -60,22 +56,12 @@ export const RdxFormControlInput = ({
   );
   return content;
 };
-export const RdxFormControlCheckbox = ({
-  input,
-  name,
-  meta,
-  label,
-}: ReduxFormProps) => {
+export const RdxFormControlCheckbox = ({ input, name, meta, label }: ReduxFormProps) => {
   const content = (
     <FormControlLabel
       name={name}
-      labelPlacement="end"
-      control={
-        <Checkbox
-          onChange={input.onChange}
-          checked={!!input.value ? true : false}
-        />
-      }
+      labelPlacement='end'
+      control={<Checkbox onChange={input.onChange} checked={!!input.value ? true : false} />}
       label={label}
     />
   );

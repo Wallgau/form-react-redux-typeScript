@@ -1,20 +1,18 @@
 import React from "react";
-import { Body } from "../styled";
+import {Body} from "../styled";
 import NextButton from "../../Buttons/NextButton/index";
-import { UserDetailsForm } from "../ContactForm/index";
+import {UserDetailsForm} from "../ContactForm/index";
 
 const UserDetailsComponent = () => {
-  // const submit = (values: string) => {
-  //   console.log(values);
-  // };
-  return (
-    <Body>
-      <UserDetailsForm />
-      <div>
-        <NextButton />
-      </div>
-    </Body>
-  );
+    // const submit = (values: string) => {
+    // console.log(values);
+    // };
+    return (<Body>
+        <UserDetailsForm/>
+        <div>
+            <NextButton/>
+        </div>
+    </Body>);
 };
 
 export default UserDetailsComponent;
