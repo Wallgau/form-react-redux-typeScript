@@ -19,6 +19,7 @@ export interface ReduxFormProps {
   type?: string;
   title?: string;
   options?: string[];
+  checked?: boolean;
 }
 
 export const RdxInput = ({ input, meta }: ReduxFormProps) => {
@@ -56,12 +57,12 @@ export const RdxFormControlInput = ({
   );
   return content;
 };
-export const RdxFormControlCheckbox = ({ input, name, meta, label }: ReduxFormProps) => {
+export const RdxFormControlCheckbox = ({ input, name, meta, label, checked }: ReduxFormProps) => {
   const content = (
     <FormControlLabel
       name={name}
       labelPlacement='end'
-      control={<Checkbox onChange={input.onChange} checked={!!input.value ? true : false} />}
+      control={<Checkbox onChange={input.onChange} checked={checked}></Checkbox>}
       label={label}
     />
   );
