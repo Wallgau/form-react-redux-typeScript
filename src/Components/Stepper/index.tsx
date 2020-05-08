@@ -4,10 +4,10 @@ import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { incrementStep, decrementStep } from "../../store/Stepper/action";
 
-import Header from "../Header";
+import Header from "../Reusable/Header";
 import UserDetails from "../Pages/UserDetails/index";
 import Privacy from "../Pages/Privacy/index";
-import CompleteForm from "../Pages/CompleteForm/index";
+import CompleteForm from "../Pages/Completed/index";
 
 interface StepProps {
   readonly increment: () => void;

@@ -1,6 +1,6 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { RdxFormControlInput, ReduxFormProps } from "../ReduxForm/index";
+import { RdxFormControlInput, ReduxFormProps } from "../Reusable/ReduxForm/index";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { userDetails } from "../../store/UserDetails/action";
@@ -22,7 +22,8 @@ const ContactForm = ({ name, role, email, password, userData }: IFormProps & Dat
       component={RdxFormControlInput}
       type='text'
       label='Enter your full name'
-      required
+      r
+      equired
     />
     <Field name='role' component={RdxFormControlInput} type='text' label='What is your title job' />
     <Field name='email' component={RdxFormControlInput} type='email' label='Enter your email' />
