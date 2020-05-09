@@ -7,6 +7,7 @@ import { Top, Box } from "./styled";
 interface StepProps {
   readonly step: number;
 }
+
 const Header = ({ step }: StepProps) => {
   const boxs = [
     {
@@ -27,7 +28,7 @@ const Header = ({ step }: StepProps) => {
   const content = (
     <Top>
       {boxs.map((box) => (
-        <Box key={box.id} isActive={step === boxs.indexOf(box)}>
+        <Box key={box.id} isactive={step === boxs.indexOf(box)}>
           {box.page}
         </Box>
       ))}

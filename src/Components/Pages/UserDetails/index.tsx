@@ -10,9 +10,6 @@ const UserDetailsComponent = () => {
   return (
     <Body>
       <UserDetailsForm />
-      <div>
-        <NextButton />
-      </div>
     </Body>
   );
 };

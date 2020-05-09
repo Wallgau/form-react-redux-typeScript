@@ -20,6 +20,7 @@ export interface ReduxFormProps {
   title?: string;
   options?: string[];
   checked?: boolean;
+  onBlur?: () => void;
 }
 
 export const RdxInput = ({ input, meta }: ReduxFormProps) => {
@@ -44,7 +45,14 @@ export const RdxFormControlInput = ({
        * Required has been set to false to ensure it doesn't trigger
        * browser's native required field validation
        */}
-      <Input id={name} name={name} type={type} required={false} onChange={input.onChange} />
+      <Input
+        id={name}
+        name={name}
+        type={type}
+        required={false}
+        onChange={input.onChange}
+        onBlur={input.onBlur}
+      />
       {meta.touched && !!meta.error ? (
         <FormHelperText id='component-error-text'>{meta.error}</FormHelperText>
       ) : null}
