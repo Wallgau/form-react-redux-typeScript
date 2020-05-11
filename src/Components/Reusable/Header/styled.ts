@@ -6,9 +6,9 @@ interface Props {
 }
 
 export const Box = styled(_Box)<Props>`
-  background-color: ${(props) => (props.isactive ? "#0dbf73" : "#FFFFFF")};
-  color: ${(props) => (props.isactive ? "#FFFFFF" : "#A9A9A9")};
-  font-weight: ${(props) => (props.isactive ? 600 : 200)};
+  background-color: ${props => (props.isactive ? "#0dbf73" : "#FFFFFF")};
+  color: ${props => (props.isactive ? "#FFFFFF" : "#A9A9A9")};
+  font-weight: ${props => (props.isactive ? 600 : 200)};
 
   border: transparent;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;

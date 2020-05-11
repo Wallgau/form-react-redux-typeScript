@@ -1,15 +1,10 @@
 import { Action } from "redux";
 
 export interface formState {
-  name: string;
+  username: string;
   role: string;
   email: string;
   password: string;
-  errorName: string;
-  errorEmail: string;
-  errorFormatEmail: string;
-  errorPassword: string;
-  errorFormatPassword: string;
 }
 
 export enum userDetailsActionType {

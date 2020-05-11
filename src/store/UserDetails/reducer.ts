@@ -2,15 +2,10 @@ import { userDetailsActionType, formState, userActions } from "./types";
 import { Action } from "redux";
 
 const initialUser: formState = {
-  name: "",
+  username: "",
   role: "",
   email: "",
   password: "",
-  errorName: "",
-  errorEmail: "",
-  errorFormatEmail: "",
-  errorPassword: "",
-  errorFormatPassword: "",
 };
 
 const formData = (
