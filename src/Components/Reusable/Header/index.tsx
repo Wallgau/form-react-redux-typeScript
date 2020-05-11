@@ -24,7 +24,6 @@ const Header = ({ step }: StepProps) => {
     },
   ];
 
-  console.log();
   const content = (
     <Top>
       {boxs.map(box => (

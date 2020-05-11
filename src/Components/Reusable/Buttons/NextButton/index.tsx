@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Next } from "../styled";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
+import { PrivacyState } from "../../../../store/Privacy/types";
 import { incrementStep } from "../../../../store/Stepper/action";
 import { StepState } from "../../../../store/Stepper/types";
 import { formState } from "../../../../store/UserDetails/types";
@@ -15,13 +16,20 @@ interface DataProps {
   userData: (payload: formState) => void;
 }
 
-const NextButton = ({ increment, userData }: ButtonProps & DataProps & formState) => {
+const NextButton = ({
+  step,
+  increment,
+  userData,
+  privacyOne,
+  privacyTwo,
+}: ButtonProps & DataProps & formState & StepState & PrivacyState) => {
   return (
     <Next>
       <Button
         type='button'
         variant='contained'
         className='next'
+        disabled={!privacyOne && !privacyTwo}
         onClick={(payload: any) => {
           increment();
           userData(payload);
@@ -32,12 +40,14 @@ const NextButton = ({ increment, userData }: ButtonProps & DataProps & formState
   );
 };
 
-const mapStateToProps = (state: StepState & formState) => ({
-  step: state.step,
+const mapStateToProps = (state: StepState & formState & any) => ({
+  step: state.step.step,
   username: state.username,
   role: state.role,
   email: state.email,
   password: state.password,
+  privacyOne: state.privacyChecked.privacyOne,
+  privacyTwo: state.privacyChecked.privacyTwo,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

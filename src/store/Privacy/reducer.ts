@@ -1,6 +1,5 @@
 import { PrivacyActionType, PrivacyState, PrivacyActions } from "./types";
 import { Action } from "redux";
-import { privacyOne } from "./action";
 
 export const initialState: PrivacyState = {
   privacyOne: false,

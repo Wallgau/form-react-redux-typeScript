@@ -53,9 +53,7 @@ export const RdxFormControlInput = ({
         onChange={input.onChange}
         onBlur={input.onBlur}
       />
-      {meta.touched && !!meta.error ? (
-        <FormHelperText id='component-error-text'>{meta.error}</FormHelperText>
-      ) : null}
+      {meta.touched && meta.error ? <span>{meta.error}</span> : null}
       {description && (
         <FormHelperText id='component-description' error={false}>
           {description}
