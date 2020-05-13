@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { connect } from "react-redux";
 
@@ -26,7 +26,7 @@ const Header = ({ step }: StepProps) => {
 
   const content = (
     <Top>
-      {boxs.map(box => (
+      {boxs.map((box) => (
         <Box key={box.id} isactive={step === boxs.indexOf(box)}>
           {box.page}
         </Box>

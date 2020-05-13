@@ -67,14 +67,14 @@ const ContactForm = ({
         name='role'
         component={RdxFormControlInput}
         type='text'
-        value={role}
+        defaultValue={role}
         label='What is your title job'
       />
       <Field
         name='email'
         component={RdxFormControlInput}
         type='email'
-        value={email}
+        defaultValue={email}
         label='Enter your email'
         required
       />
@@ -91,7 +91,7 @@ const ContactForm = ({
         name='password'
         component={RdxFormControlInput}
         type='password'
-        value={password}
+        defaultValue={password}
         label='Enter password'
         required
       />

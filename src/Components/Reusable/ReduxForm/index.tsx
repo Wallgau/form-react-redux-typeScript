@@ -55,6 +55,7 @@ export const RdxFormControlInput = ({
         onChange={input.onChange}
         onBlur={input.onBlur}
         value={value}
+        defaultValue={defaultValue}
       />
       {meta.touched && !!meta.error ? (
         <span style={{ border: "1px solid red" }}>{meta.error}</span>
