@@ -1,24 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   reduxForm,
   Field,
   getFormValues,
   getFormInitialValues,
   getFormSyncErrors,
-  getFormMeta,
-  getFormAsyncErrors,
-  getFormSyncWarnings,
-  getFormSubmitErrors,
-  getFormNames,
-  isDirty,
-  isPristine,
-  isValid,
-  isInvalid,
-  isSubmitting,
-  hasSubmitSucceeded,
-  hasSubmitFailed,
 } from "redux-form";
-// import { required, email, length, validateForm, FormValidator } from "redux-form-validators";
+import { validate } from "./validate";
 import { formState } from "../../store/UserDetails/index";
 import { RdxFormControlInput } from "../Reusable/ReduxForm/index";
 import { incrementStep } from "../../store/Stepper";
@@ -32,27 +20,38 @@ interface DataProps {
   increment: () => void;
 }
 
-const submitForm = (formValues: object) => {
-  alert(formValues);
-};
-
 const ContactForm = ({
   increment,
   userData,
+  handleSubmit,
+  submitting,
   username,
-  role,
   email,
   password,
-}: formState & DataProps) => {
+  errorUsername,
+  errorEmail,
+  errorPassword,
+}: formState & DataProps & any) => {
+  const [show, setShow] = useState(false);
+  console.log(show);
+
+  const submitForm = (payload: any) => {
+    if (username && email && password) {
+      increment();
+      userData(payload);
+    }
+  };
+
   return (
-    <form onSubmit={submitForm}>
+    <form onSubmit={handleSubmit(submitForm)}>
       <Field
         name='username'
         id='username'
         component={RdxFormControlInput}
         type='text'
-        label='Enter your full name'
+        label={"Enter your full name"}
       />
+      {show && !username ? <span style={{ color: "red" }}>{errorUsername}</span> : ""}
       <Field
         name='role'
         component={RdxFormControlInput}
@@ -60,21 +59,22 @@ const ContactForm = ({
         label='What is your title job'
       />
       <Field name='email' component={RdxFormControlInput} type='email' label='Enter your email' />
+      {show && !email ? <span style={{ color: "red" }}>{errorEmail}</span> : ""}
+
       <Field
         name='password'
         component={RdxFormControlInput}
         type='password'
         label='Enter password'
       />
+      {show && !password ? <span style={{ color: "red" }}>{errorPassword}</span> : ""}
       <Next>
         <Button
           type='submit'
           variant='contained'
           className='next'
-          onClick={(payload: any) => {
-            increment();
-            userData(payload);
-          }}>
+          disabled={submitting}
+          onClick={() => setShow(true)}>
           Next
         </Button>
       </Next>
@@ -87,21 +87,12 @@ const mapStateToProps = (state: any) => ({
   role: state.formReducer.UserDetails.values && state.formReducer.UserDetails.values.role,
   email: state.formReducer.UserDetails.values && state.formReducer.UserDetails.values.email,
   password: state.formReducer.UserDetails.values && state.formReducer.UserDetails.values.password,
+  errorUsername: state.formReducer.UserDetails.syncErrors.username,
+  errorEmail: state.formReducer.UserDetails.syncErrors.email,
+  errorPassword: state.formReducer.UserDetails.syncErrors.password,
   values: getFormValues("UserDetails")(state),
   initialValues: getFormInitialValues("UserDetails")(state),
   syncErrors: getFormSyncErrors("UserDetails")(state),
-  fields: getFormMeta("UserDetails")(state),
-  asyncErrors: getFormAsyncErrors("UserDetails")(state),
-  syncWarnings: getFormSyncWarnings("UserDetails")(state),
-  submitErrors: getFormSubmitErrors("UserDetails")(state),
-  names: getFormNames()(state),
-  dirty: isDirty("UserDetails")(state),
-  pristine: isPristine("UserDetails")(state),
-  valid: isValid("UserDetails")(state),
-  invalid: isInvalid("UserDetails")(state),
-  submitting: isSubmitting("UserDetails")(state),
-  submitSucceeded: hasSubmitSucceeded("UserDetails")(state),
-  submitFailed: hasSubmitFailed("UserDetails")(state),
 });
 
 const mapDispatchProps = (dispatch: Dispatch) => ({
@@ -110,28 +101,6 @@ const mapDispatchProps = (dispatch: Dispatch) => ({
 });
 
 const connectForm = connect(mapStateToProps, mapDispatchProps)(ContactForm);
-
-export const validate = ({ username, password, role, email }: formState) => {
-  const mailformat: any = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
-  const errors: any = {};
-  if (!username) {
-    errors.username = "Your name is required";
-    console.log("error:name");
-  }
-  if (!password) {
-    errors.password = "Your password is Required";
-    console.log("password:true");
-  }
-  if (!email) {
-    errors.email = "Your email is required";
-    console.log("email:true");
-  }
-  if (email && !email.match(mailformat)) {
-    errors.email = "your email is not valid!";
-  }
-  console.log(errors);
-  return errors;
-};
 
 export const UserDetailsForm = reduxForm({
   form: "UserDetails",
