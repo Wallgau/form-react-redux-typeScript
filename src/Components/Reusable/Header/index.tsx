@@ -27,7 +27,7 @@ const Header = ({ step }: StepProps) => {
   const content = (
     <Top>
       {boxs.map((box) => (
-        <Box key={box.id} isactive={step === boxs.indexOf(box)}>
+        <Box key={box.id} isactive={step === boxs.indexOf(box) ? true : false}>
           {box.page}
         </Box>
       ))}

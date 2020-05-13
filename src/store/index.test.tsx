@@ -2,12 +2,12 @@ import React from "react";
 import { render as rtlRender } from "@testing-library/react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import { initialState as reducerInitialState } from "./Stepper/reducer";
+import { initialState as StepperState } from "./Stepper/reducer";
 import { reducer } from "redux-form";
 
 function render({
-  initialState = reducerInitialState,
-  store = createStore(reducer, initialState),
+  initialState = StepperState,
+  store = createStore(reducer, StepperState),
   ...renderOptions
 } = {}) {
   function Wrapper(children: any) {
