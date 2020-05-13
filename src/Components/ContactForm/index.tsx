@@ -56,7 +56,7 @@ const ContactForm = ({
 
       {show && !username ? (
         <ErrorStyled>
-          <span style={{ color: "red" }}>{errorUsername}</span>
+          <span>{errorUsername}</span>
         </ErrorStyled>
       ) : (
         ""
@@ -78,7 +78,7 @@ const ContactForm = ({
 
       {show && (!email || (email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email))) ? (
         <ErrorStyled>
-          <span style={{ color: "red" }}>{errorEmail}</span>
+          <span>{errorEmail}</span>
         </ErrorStyled>
       ) : (
         ""
@@ -93,7 +93,7 @@ const ContactForm = ({
       />
       {show && !password ? (
         <ErrorStyled>
-          <span style={{ color: "red" }}>{errorPassword}</span>
+          <span>{errorPassword}</span>
         </ErrorStyled>
       ) : (
         ""
