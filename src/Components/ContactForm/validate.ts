@@ -14,7 +14,7 @@ export const validate = (values: Readonly<formState>): FormErrors<formState> => 
     !values.email ||
     (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))
   ) {
-    errors.email = "your email is missing or is not valid, it should include @!";
+    errors.email = "your email is missing or is not valid, it should include @";
   }
   return errors;
 };

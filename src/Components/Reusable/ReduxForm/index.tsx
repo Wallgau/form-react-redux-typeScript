@@ -21,6 +21,7 @@ export interface ReduxFormProps {
   options?: string[];
   checked?: boolean;
   onBlur?: () => void;
+  value?: any;
 }
 
 export const RdxInput = ({ input, meta }: ReduxFormProps) => {
@@ -37,6 +38,7 @@ export const RdxFormControlInput = ({
   description,
   defaultValue,
   type,
+  value,
 }: ReduxFormProps) => {
   const content = (
     <FormControl margin='normal' required={required} error={meta.touched && !!meta.error}>
@@ -52,6 +54,7 @@ export const RdxFormControlInput = ({
         required={false}
         onChange={input.onChange}
         onBlur={input.onBlur}
+        value={value}
       />
       {meta.touched && !!meta.error ? (
         <span style={{ border: "1px solid red" }}>{meta.error}</span>

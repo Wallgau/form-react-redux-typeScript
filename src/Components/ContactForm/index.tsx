@@ -1,11 +1,5 @@
-import React, { useState } from "react";
-import {
-  reduxForm,
-  Field,
-  getFormValues,
-  getFormInitialValues,
-  getFormSyncErrors,
-} from "redux-form";
+import React, { useState, useEffect } from "react";
+import { reduxForm, Field, getFormValues, getFormSyncErrors } from "redux-form";
 import { ErrorStyled } from "./styled";
 import { validate } from "./validate";
 import { formState } from "../../store/UserDetails/index";
@@ -33,6 +27,7 @@ const ContactForm = ({
   errorUsername,
   errorEmail,
   errorPassword,
+  hasReduxValues,
 }: formState & DataProps & any) => {
   const [show, setShow] = useState(false);
   console.log(show);
@@ -43,15 +38,22 @@ const ContactForm = ({
       userData(payload);
     }
   };
+
+  useEffect(() => {
+    hasReduxValues && userData();
+  });
+
   return (
     <form onSubmit={handleSubmit(submitForm)}>
+      {console.log("form", username)}
       <Field
         name='username'
         id='username'
         component={RdxFormControlInput}
         type='text'
-        value={username}
+        defaultValue={username}
         label={"Enter your full name"}
+        required
       />
 
       {show && !username ? (
@@ -74,6 +76,7 @@ const ContactForm = ({
         type='email'
         value={email}
         label='Enter your email'
+        required
       />
 
       {show && (!email || (email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email))) ? (
@@ -90,6 +93,7 @@ const ContactForm = ({
         type='password'
         value={password}
         label='Enter password'
+        required
       />
       {show && !password ? (
         <ErrorStyled>
@@ -113,6 +117,7 @@ const ContactForm = ({
 };
 
 const mapStateToProps = (state: any) => ({
+  hasReduxValues: state.formReducer.UserDetails.values,
   username: state.formReducer.UserDetails.values && state.formReducer.UserDetails.values.username,
   role: state.formReducer.UserDetails.values && state.formReducer.UserDetails.values.role,
   email: state.formReducer.UserDetails.values && state.formReducer.UserDetails.values.email,
@@ -121,7 +126,6 @@ const mapStateToProps = (state: any) => ({
   errorEmail: state.formReducer.UserDetails.syncErrors.email,
   errorPassword: state.formReducer.UserDetails.syncErrors.password,
   values: getFormValues("UserDetails")(state),
-  initialValues: getFormInitialValues("UserDetails")(state),
   syncErrors: getFormSyncErrors("UserDetails")(state),
 });
 
@@ -136,5 +140,6 @@ export const UserDetailsForm = reduxForm({
   form: "UserDetails",
   validate,
   destroyOnUnmount: false,
-  enableReinitialize: false,
+  enableReinitialize: true,
+  forceUnregisterOnUnmount: true,
 })(connectForm);
