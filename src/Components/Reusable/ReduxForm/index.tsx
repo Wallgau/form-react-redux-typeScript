@@ -27,29 +27,6 @@ export const RdxInput = ({ input, meta }: ReduxFormProps) => {
   const content = <Input {...input} />;
   return content;
 };
-// const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-// const asyncValidation = (e: MouseEvent, payload: any, values: formState) => {
-//   return sleep(1000).then(() => {
-//     // simulate server latency
-//     if (!values.username) {
-//       throw new SubmissionError({
-//         username: "Your username is missing",
-//         _error: "Your username is missing",
-//       });
-//     } else if (!values.password) {
-//       throw new SubmissionError({
-//         password: "Your password is missing",
-//         _error: "Your password is missing",
-//       });
-//     } else if (!values.email) {
-//       throw new SubmissionError({
-//         email: "Your email is missing",
-//         _error: "Your email is missing",
-//       });
-//     }
-//   });
-// };
 
 export const RdxFormControlInput = ({
   input,
@@ -76,7 +53,9 @@ export const RdxFormControlInput = ({
         onChange={input.onChange}
         onBlur={input.onBlur}
       />
-      {meta.touched && meta.error ? <p style={{ color: "red" }}>{meta.error}</p> : null}
+      {meta.touched && !!meta.error ? (
+        <span style={{ border: "1px solid red" }}>{meta.error}</span>
+      ) : null}
       {description && (
         <FormHelperText id='component-description' error={false}>
           {description}

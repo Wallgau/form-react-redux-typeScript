@@ -6,6 +6,7 @@ import {
   getFormInitialValues,
   getFormSyncErrors,
 } from "redux-form";
+import { ErrorStyled } from "./styled";
 import { validate } from "./validate";
 import { formState } from "../../store/UserDetails/index";
 import { RdxFormControlInput } from "../Reusable/ReduxForm/index";
@@ -26,6 +27,7 @@ const ContactForm = ({
   handleSubmit,
   submitting,
   username,
+  role,
   email,
   password,
   errorUsername,
@@ -41,7 +43,6 @@ const ContactForm = ({
       userData(payload);
     }
   };
-
   return (
     <form onSubmit={handleSubmit(submitForm)}>
       <Field
@@ -49,25 +50,54 @@ const ContactForm = ({
         id='username'
         component={RdxFormControlInput}
         type='text'
+        value={username}
         label={"Enter your full name"}
       />
-      {show && !username ? <span style={{ color: "red" }}>{errorUsername}</span> : ""}
+
+      {show && !username ? (
+        <ErrorStyled>
+          <span style={{ color: "red" }}>{errorUsername}</span>
+        </ErrorStyled>
+      ) : (
+        ""
+      )}
       <Field
         name='role'
         component={RdxFormControlInput}
         type='text'
+        value={role}
         label='What is your title job'
       />
-      <Field name='email' component={RdxFormControlInput} type='email' label='Enter your email' />
-      {show && !email ? <span style={{ color: "red" }}>{errorEmail}</span> : ""}
+      <Field
+        name='email'
+        component={RdxFormControlInput}
+        type='email'
+        value={email}
+        label='Enter your email'
+      />
+
+      {show && (!email || (email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email))) ? (
+        <ErrorStyled>
+          <span style={{ color: "red" }}>{errorEmail}</span>
+        </ErrorStyled>
+      ) : (
+        ""
+      )}
 
       <Field
         name='password'
         component={RdxFormControlInput}
         type='password'
+        value={password}
         label='Enter password'
       />
-      {show && !password ? <span style={{ color: "red" }}>{errorPassword}</span> : ""}
+      {show && !password ? (
+        <ErrorStyled>
+          <span style={{ color: "red" }}>{errorPassword}</span>
+        </ErrorStyled>
+      ) : (
+        ""
+      )}
       <Next>
         <Button
           type='submit'
@@ -106,5 +136,5 @@ export const UserDetailsForm = reduxForm({
   form: "UserDetails",
   validate,
   destroyOnUnmount: false,
-  enableReinitialize: true,
+  enableReinitialize: false,
 })(connectForm);
