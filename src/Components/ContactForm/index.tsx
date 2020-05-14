@@ -30,7 +30,6 @@ const ContactForm = ({
   hasReduxValues,
 }: formState & DataProps & any) => {
   const [show, setShow] = useState(false);
-  console.log(show);
 
   const submitForm = (payload: any) => {
     if (username && email && password) {
@@ -45,7 +44,6 @@ const ContactForm = ({
 
   return (
     <form onSubmit={handleSubmit(submitForm)}>
-      {console.log("form", username)}
       <Field
         name='username'
         id='username'
